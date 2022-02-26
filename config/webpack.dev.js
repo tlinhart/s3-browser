@@ -6,6 +6,9 @@ module.exports = merge(common, {
   mode: "development",
   devServer: {
     static: path.resolve(__dirname, "../dist"),
+    historyApiFallback: {
+      disableDotRule: true,
+    },
     hot: true,
   },
   devtool: "eval-source-map",

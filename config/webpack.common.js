@@ -7,9 +7,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 // (see https://webpack.js.org/plugins/environment-plugin/#usage-with-default-values).
 const envVars = {
   BUCKET_NAME: undefined,
-  AWS_DEFAULT_REGION: null,
-  AWS_ACCESS_KEY_ID: null,
-  AWS_SECRET_ACCESS_KEY: null,
+  AWS_REGION: undefined,
+  AWS_ACCESS_KEY_ID: undefined,
+  AWS_SECRET_ACCESS_KEY: undefined,
 };
 
 // Load variables from .env file into environment.
