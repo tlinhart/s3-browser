@@ -25,6 +25,11 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env:
+      AWS_REGION: eu-central-1
+      AWS_ACCESS_KEY_ID: AKIAIOSFODNN7EXAMPLE
+      AWS_SECRET_ACCESS_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+      BUCKET_NAME: www.example.com
     strategy:
       matrix:
         node-version: [14, 16]
