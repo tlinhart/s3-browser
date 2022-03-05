@@ -5,6 +5,7 @@
   "scripts": {
     "start": "webpack serve --config config/webpack.dev.js",
     "build": "webpack --config config/webpack.prod.js",
+    "serve": "serve -s dist/",
     "lint": "eslint src/ config/ --ext .jsx --ext .js",
     "lint:fix": "npm run lint -- --fix"
   },
@@ -32,6 +33,7 @@
     "prettier": "^2.5.1",
     "react-dev-utils": "^12.0.0",
     "react-hot-loader": "^4.13.0",
+    "serve": "^13.0.2",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.1",
     "webpack": "^5.69.1",
