@@ -1,5 +1,21 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
+    "config:base",
+    "schedule:daily",
+    ":preserveSemverRanges"
+  ],
+  "packageRules": [
+    {
+      "matchPackagePatterns": "eslint",
+      "groupName": "eslint"
+    },
+    {
+      "matchSourceUrlPrefixes": [
+        "https://github.com/webpack/",
+        "https://github.com/webpack-contrib/"
+      ],
+      "groupName": "webpack"
+    }
   ]
 }
