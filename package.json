@@ -44,7 +44,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "3.52.0",
     "@chakra-ui/react": "1.8.7",
-    "@emotion/react": "11.8.1",
+    "@emotion/react": "11.8.2",
     "@emotion/styled": "11.8.1",
     "framer-motion": "6.2.8",
     "prop-types": "15.8.1",
