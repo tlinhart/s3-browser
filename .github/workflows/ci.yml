@@ -32,6 +32,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
       BUCKET_NAME: www.example.com
     strategy:
+      fail-fast: false
       matrix:
         node-version: [14, 16]
     steps:
