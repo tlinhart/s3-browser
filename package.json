@@ -6,7 +6,7 @@
     "start": "webpack serve --config config/webpack.dev.js",
     "build": "webpack --config config/webpack.prod.js",
     "serve": "serve -s dist/",
-    "lint": "eslint src/ config/ --ext .jsx --ext .js",
+    "lint": "eslint src/ config/ demo/ --ext .jsx --ext .js",
     "lint:fix": "npm run lint -- --fix"
   },
   "repository": {

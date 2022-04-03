@@ -1,0 +1,5 @@
+name: s3-browser-demo
+description: S3 Browser demo
+runtime: nodejs
+options:
+  refresh: always

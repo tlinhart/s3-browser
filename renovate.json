@@ -18,6 +18,10 @@
         "https://github.com/webpack-contrib/"
       ],
       "groupName": "webpack"
+    },
+    {
+      "matchPackagePrefixes": "@pulumi/",
+      "groupName": "pulumi"
     }
   ]
 }
