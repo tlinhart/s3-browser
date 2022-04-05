@@ -116,3 +116,12 @@ npm run serve
 ```
 
 and point the browser to `http://localhost:3000`.
+
+## Demo
+
+There is a demo of the application available at
+http://s3-browser-demo.linhart.tech where S3 Browser is hosted from the same
+bucket as the contents (obtained from [getsamplefiles.com][getsamplefiles]). The
+whole stack is managed with Pulumi IaC and deployed using GitHub Actions.
+
+[getsamplefiles]: https://getsamplefiles.com
