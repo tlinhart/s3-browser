@@ -46,3 +46,23 @@ jobs:
         run: npm ci --include=dev
       - name: Build with webpack
         run: npm run build
+  demo:
+    name: Deploy demo
+    needs: [lint, build]
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: eu-central-1
+      - name: Create or update stack resources
+        uses: pulumi/actions@v3
+        with:
+          command: up
+          refresh: true
+          stack-name: s3-browser-demo-prod
+          work-dir: demo
+          cloud-url: s3://pulumi.linhart.tech
