@@ -73,6 +73,7 @@ const bucketDnsAlias = new aws.route53.Record(
 const user = new aws.iam.User("s3-browser-demo-user", {
   name: "s3-browser-demo",
   path: "/system/",
+  permissionsBoundary: "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess",
 });
 
 const userAccessKey = new aws.iam.AccessKey("s3-browser-demo-user-access-key", {
