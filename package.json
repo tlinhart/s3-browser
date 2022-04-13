@@ -31,7 +31,7 @@
     "eslint-plugin-react-hooks": "4.4.0",
     "html-webpack-plugin": "5.5.0",
     "prettier": "2.6.2",
-    "react-dev-utils": "12.0.0",
+    "react-dev-utils": "12.0.1",
     "react-hot-loader": "4.13.0",
     "serve": "13.0.2",
     "style-loader": "3.3.1",
