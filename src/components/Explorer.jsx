@@ -27,7 +27,9 @@ export default function Explorer() {
   const [searchParams] = useSearchParams();
   const prefix = sanitizePrefix(searchParams.get("prefix") || "");
 
-  useEffect(() => (document.title = process.env.BUCKET_NAME), []);
+  useEffect(() => {
+    document.title = process.env.BUCKET_NAME;
+  }, []);
 
   return (
     <Box maxW="4xl" m={3} mt={1}>
