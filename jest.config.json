@@ -1,0 +1,6 @@
+{
+  "testEnvironment": "jsdom",
+  "moduleNameMapper": {
+    "uuid": "uuid"
+  }
+}

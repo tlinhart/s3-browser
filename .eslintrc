@@ -19,5 +19,11 @@
     "react": {
       "version": "detect"
     }
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/__tests__/**/*.{js,jsx}", "**/*.test.{js,jsx}"],
+      "extends": ["plugin:jest/recommended"]
+    }
+  ]
 }
