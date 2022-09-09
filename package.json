@@ -8,7 +8,7 @@
     "serve": "serve -s dist/",
     "lint": "eslint src/ config/ demo/ --ext .jsx --ext .js",
     "lint:fix": "npm run lint -- --fix",
-    "test": "jest --passWithNoTests",
+    "test": "jest --silent --passWithNoTests",
     "test:watch": "npm run test -- --watch"
   },
   "repository": {
