@@ -9,7 +9,7 @@ const s3Client = new S3Client({
   },
 });
 
-const excludeRegex = new RegExp(process.env.EXCLUDE_PATTERN);
+const excludeRegex = new RegExp(process.env.EXCLUDE_PATTERN || /(?!)/);
 
 const listContents = async (prefix) => {
   console.debug("Retrieving data from AWS SDK");
