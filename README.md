@@ -30,15 +30,15 @@ The instructions below provide basic configuration steps for an S3 bucket named
 
    ```json
    {
-       "Version": "2012-10-17",
-       "Statement": [
-           {
-               "Effect": "Allow",
-               "Principal": "*",
-               "Action": "s3:GetObject",
-               "Resource": "arn:aws:s3:::www.example.com/*"
-           }
-       ]
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Effect": "Allow",
+         "Principal": "*",
+         "Action": "s3:GetObject",
+         "Resource": "arn:aws:s3:::www.example.com/*"
+       }
+     ]
    }
    ```
 
@@ -46,12 +46,12 @@ The instructions below provide basic configuration steps for an S3 bucket named
 
    ```json
    [
-       {
-           "AllowedHeaders": ["*"],
-           "AllowedMethods": ["GET"],
-           "AllowedOrigins": ["http://www.example.com"],
-           "ExposeHeaders": []
-       }
+     {
+       "AllowedHeaders": ["*"],
+       "AllowedMethods": ["GET"],
+       "AllowedOrigins": ["http://www.example.com"],
+       "ExposeHeaders": []
+     }
    ]
    ```
 
@@ -65,14 +65,14 @@ The instructions below provide basic configuration steps for an S3 bucket named
 
    ```json
    {
-       "Version": "2012-10-17",
-       "Statement": [
-           {
-               "Effect": "Allow",
-               "Action": "s3:ListBucket",
-               "Resource": "arn:aws:s3:::www.example.com"
-           }
-       ]
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Effect": "Allow",
+         "Action": "s3:ListBucket",
+         "Resource": "arn:aws:s3:::www.example.com"
+       }
+     ]
    }
    ```
 
@@ -116,6 +116,27 @@ npm run serve
 ```
 
 and point the browser to `http://localhost:3000`.
+
+### Linting and Tests
+
+To lint the code with ESLint and automatically try to fix the issues, run
+
+```sh
+npm run lint:fix
+```
+
+To run the tests with Jest test runner, issue
+
+```sh
+npm run test
+```
+
+By default, Jest runs in silent mode which prevents console output during the
+tests. To allow it (e.g. for debugging), run
+
+```sh
+npm run test -- --no-silent
+```
 
 ## Demo
 
