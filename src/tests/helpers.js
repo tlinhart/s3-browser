@@ -5,9 +5,9 @@ import { BrowserRouter } from "react-router-dom";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-const queryClient = new QueryClient();
-
 function ProvidersWrapper({ children }) {
+  const queryClient = new QueryClient();
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>{children}</BrowserRouter>
