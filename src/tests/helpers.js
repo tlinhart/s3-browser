@@ -6,7 +6,11 @@ import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 function ProvidersWrapper({ children }) {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: { retry: false },
+    },
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
