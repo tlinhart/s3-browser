@@ -67,7 +67,7 @@ function Navigation({ prefix }) {
             {process.env.BUCKET_NAME}
           </Text>
         ) : (
-          <BreadcrumbLink as={ReactRouterLink} to="">
+          <BreadcrumbLink as={ReactRouterLink} to="" aria-label="bucket root">
             <Icon as={GrHome} verticalAlign="text-top" />
           </BreadcrumbLink>
         )}
