@@ -59,7 +59,7 @@
     "@chakra-ui/react": "2.3.2",
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
-    "@tanstack/react-query": "4.2.3",
+    "@tanstack/react-query": "4.3.4",
     "@tanstack/react-query-devtools": "4.2.3",
     "framer-motion": "7.3.2",
     "prop-types": "15.8.1",
