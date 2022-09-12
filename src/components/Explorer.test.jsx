@@ -89,11 +89,11 @@ describe("successful data fetching", () => {
   test("can navigate through contents", async () => {
     const { user } = renderWithProviders(<Explorer />);
 
-    await user.click(await screen.findByText("folder/"));
+    await user.click(await screen.findByRole("link", { name: "folder/" }));
     expect(
       await screen.findByRole("row", { name: /file\.txt/ })
     ).toBeInTheDocument();
-    await user.click(screen.getByLabelText("bucket root"));
+    await user.click(screen.getByRole("link", { name: "bucket root" }));
     expect(
       await screen.findByRole("row", { name: /folder\// })
     ).toBeInTheDocument();
