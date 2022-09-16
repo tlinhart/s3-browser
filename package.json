@@ -55,7 +55,7 @@
     "webpack-merge": "5.8.0"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "3.168.0",
+    "@aws-sdk/client-s3": "3.171.0",
     "@chakra-ui/react": "2.3.2",
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
