@@ -33,7 +33,7 @@
     "babel-loader": "8.3.0",
     "css-loader": "6.7.1",
     "dotenv": "16.0.3",
-    "eslint": "8.26.0",
+    "eslint": "8.27.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-jest": "27.1.4",
     "eslint-plugin-jest-dom": "4.0.2",
