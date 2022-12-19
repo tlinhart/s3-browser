@@ -62,7 +62,7 @@
     "@emotion/styled": "11.10.5",
     "@tanstack/react-query": "4.18.0",
     "@tanstack/react-query-devtools": "4.18.0",
-    "framer-motion": "7.6.19",
+    "framer-motion": "7.10.2",
     "prop-types": "15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
