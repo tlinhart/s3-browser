@@ -58,8 +58,8 @@
   "dependencies": {
     "@aws-sdk/client-s3": "3.272.0",
     "@chakra-ui/react": "2.4.9",
-    "@emotion/react": "11.10.5",
-    "@emotion/styled": "11.10.5",
+    "@emotion/react": "11.10.6",
+    "@emotion/styled": "11.10.6",
     "@tanstack/react-query": "4.22.3",
     "@tanstack/react-query-devtools": "4.22.3",
     "framer-motion": "8.5.5",
