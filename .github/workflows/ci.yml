@@ -96,7 +96,7 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: eu-central-1
       - name: Create or update stack resources
-        uses: pulumi/actions@v3
+        uses: pulumi/actions@v4
         with:
           command: up
           refresh: true
