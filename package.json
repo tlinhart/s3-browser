@@ -28,7 +28,7 @@
     "@testing-library/user-event": "14.4.3",
     "@types/jest": "29.4.0",
     "@types/node": "18.14.6",
-    "aws-sdk-client-mock": "2.1.0",
+    "aws-sdk-client-mock": "2.1.1",
     "babel-jest": "29.4.3",
     "babel-loader": "9.1.2",
     "css-loader": "6.7.3",
