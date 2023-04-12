@@ -3,7 +3,7 @@
   "main": "index.js",
   "dependencies": {
     "@pulumi/aws": "5.35.0",
-    "@pulumi/command": "0.7.1",
+    "@pulumi/command": "0.7.2",
     "@pulumi/pulumi": "3.62.0"
   }
 }
