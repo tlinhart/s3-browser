@@ -1,6 +1,7 @@
+const { name: appName, version: appVersion } = require("../package.json");
 const path = require("path");
 const dotenv = require("dotenv");
-const { EnvironmentPlugin } = require("webpack");
+const { DefinePlugin, EnvironmentPlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 // Supported environment variables with default values
@@ -11,6 +12,7 @@ const envVars = {
   AWS_SECRET_ACCESS_KEY: undefined,
   BUCKET_NAME: undefined,
   EXCLUDE_PATTERN: "^index\\.html$",
+  FARO_ENDPOINT_URL: null,
 };
 
 // Load variables from .env file into environment.
@@ -44,6 +46,10 @@ module.exports = {
     extensions: ["*", ".js", ".jsx"],
   },
   plugins: [
+    new DefinePlugin({
+      APP_NAME: appName,
+      APP_VERSION: appVersion,
+    }),
     new EnvironmentPlugin(envVars),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "../src/index.html"),

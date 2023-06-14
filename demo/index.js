@@ -7,6 +7,9 @@ const fs = require("fs");
 const path = require("path");
 const mime = require("mime");
 
+const config = new pulumi.Config();
+const faroEndpointUrl = config.getSecret("faro_endpoint_url");
+
 // Create an S3 bucket.
 const bucket = new aws.s3.BucketV2("s3-browser-demo-bucket", {
   bucket: "s3-browser-demo.linhart.tech",
@@ -131,6 +134,7 @@ const buildCommand = new command.local.Command(
       AWS_ACCESS_KEY_ID: userAccessKey.id,
       AWS_SECRET_ACCESS_KEY: userAccessKey.secret,
       BUCKET_NAME: bucket.id,
+      ...(faroEndpointUrl && { FARO_ENDPOINT_URL: faroEndpointUrl }),
     },
     triggers: [Math.random()],
   }

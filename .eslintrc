@@ -3,6 +3,10 @@
     "browser": true,
     "node": true
   },
+  "globals": {
+    "APP_NAME": "readonly",
+    "APP_VERSION": "readonly"
+  },
   "parser": "@babel/eslint-parser",
   "parserOptions": {
     "babelOptions": {
