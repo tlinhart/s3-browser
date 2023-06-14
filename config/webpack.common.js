@@ -47,8 +47,8 @@ module.exports = {
   },
   plugins: [
     new DefinePlugin({
-      APP_NAME: appName,
-      APP_VERSION: appVersion,
+      APP_NAME: JSON.stringify(appName),
+      APP_VERSION: JSON.stringify(appVersion),
     }),
     new EnvironmentPlugin(envVars),
     new HtmlWebpackPlugin({
