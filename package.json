@@ -63,7 +63,7 @@
     "@grafana/faro-web-sdk": "1.1.0",
     "@tanstack/react-query": "4.29.15",
     "@tanstack/react-query-devtools": "4.29.15",
-    "framer-motion": "10.12.16",
+    "framer-motion": "10.12.17",
     "prop-types": "15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
