@@ -18,10 +18,10 @@
   "author": "Tomáš Linhart <pasmen@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "7.22.6",
+    "@babel/core": "7.22.8",
     "@babel/eslint-parser": "7.22.6",
-    "@babel/plugin-transform-runtime": "7.22.6",
-    "@babel/preset-env": "7.22.6",
+    "@babel/plugin-transform-runtime": "7.22.7",
+    "@babel/preset-env": "7.22.7",
     "@babel/preset-react": "7.22.5",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "14.0.0",
