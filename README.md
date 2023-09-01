@@ -83,6 +83,7 @@ Start by cloning the repository and installing the dependencies:
 ```sh
 git clone https://github.com/tlinhart/s3-browser.git
 cd s3-browser
+nvm install
 npm install
 ```
 
