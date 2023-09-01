@@ -118,6 +118,7 @@ for (const file of listFiles("./contents")) {
   new aws.s3.BucketObjectv2(`s3-browser-demo-bucket-object-${relPath}`, {
     key: relPath,
     bucket: bucket.id,
+    acl: "private",
     source: new pulumi.asset.FileAsset(file),
     contentType: mime.getType(file) || undefined,
   });
@@ -146,6 +147,7 @@ new aws.s3.BucketObjectv2(
   {
     key: "index.html",
     bucket: bucket.id,
+    acl: "private",
     source: buildCommand.id.apply(
       () => new pulumi.asset.FileAsset("../dist/index.html")
     ),
