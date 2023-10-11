@@ -4,6 +4,6 @@
   "dependencies": {
     "@pulumi/aws": "6.4.1",
     "@pulumi/command": "0.9.1",
-    "@pulumi/pulumi": "3.87.0"
+    "@pulumi/pulumi": "3.88.0"
   }
 }
