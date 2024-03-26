@@ -88,6 +88,6 @@ jobs:
         with:
           command: up
           refresh: true
-          stack-name: s3-browser-demo-prod
+          stack-name: prod
           work-dir: demo
           cloud-url: s3://pulumi.linhart.tech
