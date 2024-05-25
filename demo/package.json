@@ -2,8 +2,8 @@
   "name": "s3-browser-demo",
   "main": "index.js",
   "dependencies": {
-    "@pulumi/aws": "6.37.0",
+    "@pulumi/aws": "6.37.1",
     "@pulumi/command": "0.11.1",
-    "@pulumi/pulumi": "3.116.1"
+    "@pulumi/pulumi": "3.117.0"
   }
 }
