@@ -7,4 +7,3 @@ services:
       - path: ./.env
     ports:
       - "3000:3000"
-      # - "8080:8080"
