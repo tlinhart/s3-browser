@@ -37,10 +37,10 @@ new aws.s3.BucketCorsConfigurationV2("s3-browser-demo-bucket-cors", {
   bucket: bucket.id,
   corsRules: [
     {
-      allowed_headers: ["*"],
-      allowed_methods: ["GET"],
-      allowed_origins: [pulumi.interpolate`http://${bucket.id}`],
-      max_age_seconds: 5000,
+      allowedHeaders: ["*"],
+      allowedMethods: ["GET"],
+      allowedOrigins: [pulumi.interpolate`http://${bucket.id}`],
+      maxAgeSeconds: 5000,
     },
   ],
 });
