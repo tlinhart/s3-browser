@@ -3,12 +3,19 @@
 const pulumi = require("@pulumi/pulumi");
 const aws = require("@pulumi/aws");
 const command = require("@pulumi/command");
+const { registerAutoTags } = require("pulumi-aws-tags");
 const fs = require("fs");
 const path = require("path");
 const mime = require("mime");
 
 const config = new pulumi.Config();
 const faroEndpointUrl = config.getSecret("faro_endpoint_url");
+
+// Automatically inject tags to created AWS resources.
+registerAutoTags({
+  "user:Project": pulumi.getProject(),
+  "user:Stack": pulumi.getStack(),
+});
 
 // Create an S3 bucket.
 const bucket = new aws.s3.BucketV2("s3-browser-demo-bucket", {
