@@ -8,11 +8,6 @@
     "APP_VERSION": "readonly"
   },
   "parser": "@babel/eslint-parser",
-  "parserOptions": {
-    "babelOptions": {
-      "configFile": "./.babelrc"
-    }
-  },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -26,7 +21,10 @@
   },
   "overrides": [
     {
-      "files": ["**/__tests__/**/*.{js,jsx}", "**/*.test.{js,jsx}"],
+      "files": [
+        "**/__tests__/**/*.{js,jsx}",
+        "**/*.test.{js,jsx}"
+      ],
       "extends": [
         "plugin:jest/recommended",
         "plugin:jest-dom/recommended",
