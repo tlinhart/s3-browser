@@ -2,26 +2,9 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:js-app",
-    "schedule:daily",
+    "schedule:weekly",
     ":enableVulnerabilityAlerts",
     ":maintainLockFilesWeekly",
     ":automergeMinor"
-  ],
-  "packageRules": [
-    {
-      "matchPackagePatterns": "eslint",
-      "groupName": "eslint"
-    },
-    {
-      "matchSourceUrlPrefixes": [
-        "https://github.com/webpack/",
-        "https://github.com/webpack-contrib/"
-      ],
-      "groupName": "webpack"
-    },
-    {
-      "matchPackagePrefixes": "@pulumi/",
-      "groupName": "pulumi"
-    }
   ]
 }
