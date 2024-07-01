@@ -11,8 +11,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended"
+    "plugin:react-hooks/recommended"
   ],
   "settings": {
     "react": {
@@ -22,7 +21,6 @@
   "overrides": [
     {
       "files": [
-        "**/__tests__/**/*.{js,jsx}",
         "**/*.test.{js,jsx}"
       ],
       "extends": [
