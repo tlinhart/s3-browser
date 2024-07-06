@@ -118,7 +118,13 @@ npm run serve
 
 and point the browser to `http://localhost:3000`.
 
-### Linting and Tests
+### Formatting, Linting and Tests
+
+To format the files with Prettier, issue
+
+```sh
+npm run format
+```
 
 To lint the code with ESLint and automatically try to fix the issues, run
 
