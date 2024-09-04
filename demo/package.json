@@ -5,6 +5,6 @@
     "@pulumi/aws": "6.50.1",
     "@pulumi/command": "1.0.1",
     "@pulumi/pulumi": "3.130.0",
-    "pulumi-aws-tags": "0.2.0"
+    "pulumi-aws-tags": "1.0.0"
   }
 }
