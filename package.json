@@ -36,7 +36,7 @@
     "@testing-library/user-event": "14.5.2",
     "@types/eslint": "8.56.12",
     "@types/eslint__js": "8.42.3",
-    "@types/jest": "29.5.12",
+    "@types/jest": "29.5.13",
     "@types/node": "20.14.10",
     "aws-sdk-client-mock": "4.0.1",
     "babel-jest": "29.7.0",
