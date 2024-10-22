@@ -1,5 +1,7 @@
 name: s3-browser-demo
 description: S3 Browser demo
 runtime: nodejs
+backend:
+  url: s3://pulumi.linhart.tech
 options:
   refresh: always

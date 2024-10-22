@@ -80,4 +80,3 @@ jobs:
           suppress-progress: true
           stack-name: prod
           work-dir: demo
-          cloud-url: s3://pulumi.linhart.tech
