@@ -16,8 +16,8 @@ const getBucketBaseUrl = () => {
     return `http://${process.env.BUCKET_NAME}`;
   }
   return process.env.FORCE_PATH_STYLE === "true"
-    ? `http://${process.env.AWS_ENDPOINT_OVERRIDE}/${process.env.BUCKET_NAME}`
-    : `http://${process.env.BUCKET_NAME}.${process.env.AWS_ENDPOINT_OVERRIDE}`;
+    ? `http://s3.${process.env.AWS_REGION}.${process.env.AWS_ENDPOINT_OVERRIDE}/${process.env.BUCKET_NAME}`
+    : `http://${process.env.BUCKET_NAME}.s3.${process.env.AWS_REGION}.${process.env.AWS_ENDPOINT_OVERRIDE}`;
 };
 
 const BUCKET_URL = getBucketBaseUrl();
