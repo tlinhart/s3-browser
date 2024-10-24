@@ -11,9 +11,16 @@ const s3Client = new S3Client({
   forcePathStyle: process.env.FORCE_PATH_STYLE === "true" || undefined,
 });
 
-const BUCKET_URL = !process.env.AWS_ENDPOINT_OVERRIDE
-  ? `http://${process.env.BUCKET_NAME}`
-  : `${process.env.AWS_ENDPOINT_OVERRIDE}/${process.env.BUCKET_NAME}`;
+const getBucketBaseUrl = () => {
+  if (!process.env.AWS_ENDPOINT_OVERRIDE) {
+    return `http://${process.env.BUCKET_NAME}`;
+  }
+  return process.env.FORCE_PATH_STYLE === "true"
+    ? `http://${process.env.AWS_ENDPOINT_OVERRIDE}/${process.env.BUCKET_NAME}`
+    : `http://${process.env.BUCKET_NAME}.${process.env.AWS_ENDPOINT_OVERRIDE}`;
+};
+
+const BUCKET_URL = getBucketBaseUrl();
 
 const excludeRegex = new RegExp(process.env.EXCLUDE_PATTERN || /(?!)/);
 
