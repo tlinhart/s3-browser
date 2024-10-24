@@ -3,10 +3,12 @@ import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
 
 const s3Client = new S3Client({
   region: process.env.AWS_REGION,
+  endpoint: process.env.AWS_ENDPOINT,
   credentials: {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
+  forcePathStyle: true,
 });
 
 const excludeRegex = new RegExp(process.env.EXCLUDE_PATTERN || /(?!)/);
@@ -37,7 +39,7 @@ const listContents = async (prefix) => {
           lastModified: LastModified,
           size: Size,
           path: Key,
-          url: `http://${process.env.BUCKET_NAME}/${Key}`,
+          url: `${process.env.AWS_ENDPOINT}/${process.env.BUCKET_NAME}/${Key}`,
         })
       ) || [],
   };
