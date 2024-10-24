@@ -10,10 +10,11 @@ const envVars = {
   AWS_REGION: undefined,
   AWS_ACCESS_KEY_ID: undefined,
   AWS_SECRET_ACCESS_KEY: undefined,
-  AWS_ENDPOINT_OVERRIDE: "",
+  AWS_ENDPOINT_OVERRIDE: null,
   BUCKET_NAME: undefined,
   EXCLUDE_PATTERN: "^index\\.html$",
   FARO_ENDPOINT_URL: null,
+  FORCE_PATH_STYLE: null,
 };
 
 // Load variables from .env file into environment.

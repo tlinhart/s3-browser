@@ -8,6 +8,7 @@ const s3Client = new S3Client({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
+  forcePathStyle: process.env.FORCE_PATH_STYLE === "true" || undefined,
 });
 
 const BUCKET_URL = !process.env.AWS_ENDPOINT_OVERRIDE
