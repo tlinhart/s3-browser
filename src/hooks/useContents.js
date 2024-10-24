@@ -10,6 +10,10 @@ const s3Client = new S3Client({
   },
 });
 
+const BUCKET_URL = !process.env.AWS_ENDPOINT_OVERRIDE
+  ? `http://${process.env.BUCKET_NAME}`
+  : `${process.env.AWS_ENDPOINT_OVERRIDE}/${process.env.BUCKET_NAME}`;
+
 const excludeRegex = new RegExp(process.env.EXCLUDE_PATTERN || /(?!)/);
 
 const listContents = async (prefix) => {
@@ -38,10 +42,7 @@ const listContents = async (prefix) => {
           lastModified: LastModified,
           size: Size,
           path: Key,
-          url:
-            process.env.AWS_ENDPOINT_OVERRIDE === ""
-              ? `http://${process.env.BUCKET_NAME}/${Key}`
-              : `${process.env.AWS_ENDPOINT_OVERRIDE}/${process.env.BUCKET_NAME}/${Key}`,
+          url: `${BUCKET_URL}/${Key}`,
         })
       ) || [],
   };
