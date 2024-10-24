@@ -11,15 +11,14 @@ const s3Client = new S3Client({
   forcePathStyle: process.env.FORCE_PATH_STYLE === "true" || undefined,
 });
 
-const urlWithoutScheme = (url) => url.replace(/.*?:\/\//, "");
-
 const getBucketBaseUrl = () => {
   if (!process.env.AWS_ENDPOINT_OVERRIDE) {
-    return `http://${process.env.BUCKET_NAME}`;
+    return `${process.env.AWS_REQUEST_SCHEME}://${process.env.BUCKET_NAME}`;
   }
+  // based on doc at https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html
   return process.env.FORCE_PATH_STYLE === "true"
-    ? `http://s3.${process.env.AWS_REGION}.${urlWithoutScheme(process.env.AWS_ENDPOINT_OVERRIDE)}/${process.env.BUCKET_NAME}`
-    : `http://${process.env.BUCKET_NAME}.s3.${process.env.AWS_REGION}.${urlWithoutScheme(process.env.AWS_ENDPOINT_OVERRIDE)}`;
+    ? `${process.env.AWS_REQUEST_SCHEME}://s3.${process.env.AWS_REGION}.${process.env.AWS_ENDPOINT_OVERRIDE}/${process.env.BUCKET_NAME}`
+    : `${process.env.AWS_REQUEST_SCHEME}://${process.env.BUCKET_NAME}.s3.${process.env.AWS_REGION}.${process.env.AWS_ENDPOINT_OVERRIDE}`;
 };
 
 const BUCKET_URL = getBucketBaseUrl();
