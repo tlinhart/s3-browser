@@ -37,7 +37,7 @@
     "@types/eslint": "9.6.1",
     "@types/eslint__js": "8.42.3",
     "@types/jest": "29.5.14",
-    "@types/node": "20.17.7",
+    "@types/node": "20.17.9",
     "aws-sdk-client-mock": "4.0.2",
     "babel-jest": "29.7.0",
     "babel-loader": "9.2.1",
