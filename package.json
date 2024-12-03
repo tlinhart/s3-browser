@@ -43,7 +43,7 @@
     "babel-loader": "9.2.1",
     "css-loader": "7.1.2",
     "dotenv": "16.4.5",
-    "eslint": "8.57.1",
+    "eslint": "9.16.0",
     "eslint-plugin-jest": "28.8.3",
     "eslint-plugin-jest-dom": "5.4.0",
     "eslint-plugin-react": "7.37.2",
