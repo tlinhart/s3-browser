@@ -66,7 +66,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.722.0",
-    "@chakra-ui/react": "2.10.4",
+    "@chakra-ui/react": "2.10.5",
     "@emotion/react": "11.13.5",
     "@emotion/styled": "11.13.5",
     "@grafana/faro-web-sdk": "1.12.2",
