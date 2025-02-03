@@ -69,7 +69,7 @@
     "@chakra-ui/react": "2.10.5",
     "@emotion/react": "11.13.5",
     "@emotion/styled": "11.13.5",
-    "@grafana/faro-web-sdk": "1.12.2",
+    "@grafana/faro-web-sdk": "1.12.3",
     "@tanstack/react-query": "4.36.1",
     "@tanstack/react-query-devtools": "4.36.1",
     "framer-motion": "11.13.1",
