@@ -5,3 +5,5 @@ backend:
   url: s3://pulumi.linhart.tech
 options:
   refresh: always
+config:
+  aws:region: eu-central-1

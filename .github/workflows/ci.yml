@@ -75,7 +75,6 @@ jobs:
         uses: pulumi/actions@v6
         with:
           command: up
-          refresh: true
           diff: true
           suppress-progress: true
           stack-name: prod

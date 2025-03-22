@@ -1,6 +1,5 @@
 secretsprovider: awskms://alias/pulumi?region=eu-central-1
 encryptedkey: AQICAHj/n/vqYUWGLYq2qIQbnkKb+2dLKmHaO7EmFfTmpgHJqAGUXwJjNL24ZhxlYoXAd9jKAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMxVSVBUqGiy2RyA/YAgEQgDtTwvIRZhjIPfqM7OcKQroJBTMRvsOFQ83vVqOfCxR/dhMUSSLX+bPi9aUryjdqJfprzvURlvmy83QcUw==
 config:
-  aws:region: eu-central-1
   s3-browser-demo:faro_endpoint_url:
     secure: v1:2Gs1R3G3LpMvjFnQ:BBAN5I+eIJHbFCVrhFGL6YlF9vNFxqAkG2FKtFwnQkh4m5MSsR2OKhlxc0zlDqcKbWEbTLT3T3EkZRi2HZhyMWkJRvm7euga/NF7mcqq600Ibw0KSEjg3fDiWa4V4JZk+sn3qIVp8vhrj+2zRQ==
