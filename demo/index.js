@@ -4,8 +4,8 @@ const pulumi = require("@pulumi/pulumi");
 const aws = require("@pulumi/aws");
 const command = require("@pulumi/command");
 const { registerAutoTags } = require("pulumi-aws-tags");
-const fs = require("fs");
-const path = require("path");
+const fs = require("node:fs");
+const path = require("node:path");
 const mime = require("mime");
 
 const config = new pulumi.Config();
@@ -25,19 +25,17 @@ const bucket = new aws.s3.BucketV2("s3-browser-demo-bucket", {
 
 new aws.s3.BucketPolicy("s3-browser-demo-bucket-policy", {
   bucket: bucket.id,
-  policy: bucket.id.apply((bucket) =>
-    JSON.stringify({
-      Version: "2012-10-17",
-      Statement: [
-        {
-          Effect: "Allow",
-          Principal: "*",
-          Action: "s3:GetObject",
-          Resource: `arn:aws:s3:::${bucket}/*`,
-        },
-      ],
-    })
-  ),
+  policy: pulumi.jsonStringify({
+    Version: "2012-10-17",
+    Statement: [
+      {
+        Effect: "Allow",
+        Principal: "*",
+        Action: "s3:GetObject",
+        Resource: pulumi.interpolate`${bucket.arn}/*`,
+      },
+    ],
+  }),
 });
 
 new aws.s3.BucketCorsConfigurationV2("s3-browser-demo-bucket-cors", {
@@ -61,13 +59,13 @@ const bucketWebsite = new aws.s3.BucketWebsiteConfigurationV2(
 );
 
 // Create a DNS alias record for the bucket's website endpoint.
-const zone = aws.route53.getZone({ name: "linhart.tech" });
+const zone = aws.route53.getZoneOutput({ name: "linhart.tech" });
 
 const bucketDnsAlias = new aws.route53.Record(
   "s3-browser-demo-bucket-dns-alias",
   {
     name: "s3-browser-demo.linhart.tech",
-    zoneId: zone.then((zone) => zone.zoneId),
+    zoneId: zone.zoneId,
     type: "A",
     aliases: [
       {
@@ -92,18 +90,16 @@ const userAccessKey = new aws.iam.AccessKey("s3-browser-demo-user-access-key", {
 
 new aws.iam.UserPolicy("s3-browser-demo-user-policy", {
   user: user.name,
-  policy: bucket.id.apply((bucket) =>
-    JSON.stringify({
-      Version: "2012-10-17",
-      Statement: [
-        {
-          Effect: "Allow",
-          Action: "s3:ListBucket",
-          Resource: `arn:aws:s3:::${bucket}`,
-        },
-      ],
-    })
-  ),
+  policy: pulumi.jsonStringify({
+    Version: "2012-10-17",
+    Statement: [
+      {
+        Effect: "Allow",
+        Action: "s3:ListBucket",
+        Resource: bucket.arn,
+      },
+    ],
+  }),
 });
 
 // Create bucket objects for the bucket's contents.
