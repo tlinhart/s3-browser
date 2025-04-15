@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
 import Explorer from "./components/Explorer";
 
 const queryClient = new QueryClient({
@@ -13,7 +13,7 @@ const queryClient = new QueryClient({
 
 export default function App() {
   return (
-    <ChakraProvider>
+    <ChakraProvider value={defaultSystem}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>

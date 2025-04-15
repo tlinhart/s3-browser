@@ -1,25 +1,16 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link as ReactRouterLink, useSearchParams } from "react-router-dom";
 import {
   Box,
   VStack,
-  Heading,
-  Text,
   Link,
   Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
   Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
   Spinner,
   Icon,
 } from "@chakra-ui/react";
-import { GrHome, GrFolder, GrDocument, GrFormNext } from "react-icons/gr";
+import { GrHome, GrFolder, GrDocument } from "react-icons/gr";
 import { useContents } from "../hooks/useContents";
 import { sanitizePrefix, formatFileSize } from "../helpers";
 
@@ -28,7 +19,7 @@ export default function Explorer() {
   const prefix = sanitizePrefix(searchParams.get("prefix") || "");
 
   useEffect(() => {
-    document.title = process.env.BUCKET_NAME;
+    document.title = process.env.BUCKET_NAME || "S3 Browser";
   }, []);
 
   return (
@@ -48,42 +39,50 @@ function Navigation({ prefix }) {
     .map((item, index, items) => ({
       name: `${item}/`,
       url: `/?prefix=${items.slice(0, index + 1).join("/")}/`,
-      isCurrent: index == items.length - 1,
+      isCurrent: index === items.length - 1,
     }));
 
   return (
-    <Breadcrumb
+    <Breadcrumb.Root
+      size="lg"
       borderWidth="1px"
       shadow="md"
-      p={3}
+      p={2}
       background="gray.100"
-      spacing={1}
-      separator={<Icon as={GrFormNext} verticalAlign="middle" />}
     >
-      <BreadcrumbItem key="root" isCurrentPage={folders.length == 0}>
-        {folders.length == 0 ? (
-          <Text color="gray.400">
-            <Icon as={GrHome} mr={2} verticalAlign="text-top" />
-            {process.env.BUCKET_NAME}
-          </Text>
-        ) : (
-          <BreadcrumbLink as={ReactRouterLink} to="" aria-label="bucket root">
-            <Icon as={GrHome} verticalAlign="text-top" />
-          </BreadcrumbLink>
-        )}
-      </BreadcrumbItem>
-      {folders.map((item) => (
-        <BreadcrumbItem key={item.url} isCurrentPage={item.isCurrent}>
-          {item.isCurrent ? (
-            <Text color="gray.400">{item.name}</Text>
+      <Breadcrumb.List>
+        <Breadcrumb.Item key="root">
+          {folders.length === 0 ? (
+            <Breadcrumb.CurrentLink fontWeight="bold">
+              <Icon as={GrHome} mr={2} verticalAlign="text-top" />
+              {process.env.BUCKET_NAME}
+            </Breadcrumb.CurrentLink>
           ) : (
-            <BreadcrumbLink as={ReactRouterLink} to={item.url}>
-              {item.name}
-            </BreadcrumbLink>
+            <Breadcrumb.Link asChild aria-label="bucket root">
+              <ReactRouterLink to="">
+                <Icon as={GrHome} verticalAlign="text-top" />
+              </ReactRouterLink>
+            </Breadcrumb.Link>
           )}
-        </BreadcrumbItem>
-      ))}
-    </Breadcrumb>
+        </Breadcrumb.Item>
+        {folders.map((item) => (
+          <Fragment key={item.url}>
+            <Breadcrumb.Separator />
+            <Breadcrumb.Item>
+              {item.isCurrent ? (
+                <Breadcrumb.CurrentLink fontWeight="bold">
+                  {item.name}
+                </Breadcrumb.CurrentLink>
+              ) : (
+                <Breadcrumb.Link asChild>
+                  <ReactRouterLink to={item.url}>{item.name}</ReactRouterLink>
+                </Breadcrumb.Link>
+              )}
+            </Breadcrumb.Item>
+          </Fragment>
+        ))}
+      </Breadcrumb.List>
+    </Breadcrumb.Root>
   );
 }
 
@@ -96,89 +95,83 @@ function Listing({ prefix }) {
   console.debug(`Query status: ${status}`);
 
   return (
-    <>
-      <Heading as="h3" size="lg" mt={2} mb={2} fontWeight="light">
-        {prefix
-          ? `${prefix.split("/").slice(-2, -1)}/`
-          : process.env.BUCKET_NAME}
-      </Heading>
-      <Box borderWidth="1px" shadow="md">
-        <Table variant="simple" size="sm">
-          <Thead background="gray.200">
-            <Tr>
-              <Th>Name</Th>
-              <Th>Last modified</Th>
-              <Th>Size</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {(() => {
-              switch (status) {
-                case "loading":
-                  return (
-                    <Tr>
-                      <Td colSpan={3} textAlign="center">
-                        <Spinner
-                          size="sm"
-                          emptyColor="gray.200"
-                          verticalAlign="middle"
-                          mr={1}
-                        />
-                        Loading...
-                      </Td>
-                    </Tr>
-                  );
-                case "error":
-                  return (
-                    <Tr>
-                      <Td colSpan={3} textAlign="center">
-                        Failed to fetch data: {error.message}
-                      </Td>
-                    </Tr>
-                  );
-                case "success":
-                  return (
-                    <>
-                      {data?.folders.map((item) => (
-                        <Tr key={item.path}>
-                          <Td>
-                            <Icon
-                              as={GrFolder}
-                              mr={1}
-                              verticalAlign="text-top"
-                            />
-                            <Link as={ReactRouterLink} to={item.url}>
+    <Box borderWidth="1px" shadow="md">
+      <Table.Root variant="outline" size="sm">
+        <Table.Header background="gray.200">
+          <Table.Row>
+            <Table.ColumnHeader>Name</Table.ColumnHeader>
+            <Table.ColumnHeader>Last modified</Table.ColumnHeader>
+            <Table.ColumnHeader>Size</Table.ColumnHeader>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {(() => {
+            switch (status) {
+              case "loading":
+                return (
+                  <Table.Row>
+                    <Table.Cell colSpan={3} textAlign="center">
+                      <Spinner size="sm" verticalAlign="middle" mr={1} />
+                      Loading...
+                    </Table.Cell>
+                  </Table.Row>
+                );
+              case "error":
+                return (
+                  <Table.Row>
+                    <Table.Cell colSpan={3} textAlign="center">
+                      Failed to fetch data: {error.message}
+                    </Table.Cell>
+                  </Table.Row>
+                );
+              case "success":
+                return (
+                  <>
+                    {data?.folders.map((item) => (
+                      <Table.Row key={item.path}>
+                        <Table.Cell>
+                          <Icon as={GrFolder} mr={1} verticalAlign="text-top" />
+                          <Link asChild>
+                            <ReactRouterLink to={item.url}>
                               {item.name}
-                            </Link>
-                          </Td>
-                          <Td>–</Td>
-                          <Td isNumeric>–</Td>
-                        </Tr>
-                      ))}
-                      {data?.objects.map((item) => (
-                        <Tr key={item.path}>
-                          <Td>
-                            <Icon
-                              as={GrDocument}
-                              mr={1}
-                              verticalAlign="text-top"
-                            />
-                            <Link href={item.url} isExternal>
-                              {item.name}
-                            </Link>
-                          </Td>
-                          <Td>{item.lastModified.toLocaleString()}</Td>
-                          <Td isNumeric>{formatFileSize(item.size)}</Td>
-                        </Tr>
-                      ))}
-                    </>
-                  );
-              }
-            })()}
-          </Tbody>
-        </Table>
-      </Box>
-    </>
+                            </ReactRouterLink>
+                          </Link>
+                        </Table.Cell>
+                        <Table.Cell>–</Table.Cell>
+                        <Table.Cell textAlign="right">–</Table.Cell>
+                      </Table.Row>
+                    ))}
+                    {data?.objects.map((item) => (
+                      <Table.Row key={item.path}>
+                        <Table.Cell>
+                          <Icon
+                            as={GrDocument}
+                            mr={1}
+                            verticalAlign="text-top"
+                          />
+                          <Link
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {item.name}
+                          </Link>
+                        </Table.Cell>
+                        <Table.Cell>
+                          {item.lastModified.toLocaleString()}
+                        </Table.Cell>
+                        <Table.Cell textAlign="right">
+                          {formatFileSize(item.size)}
+                        </Table.Cell>
+                      </Table.Row>
+                    ))}
+                  </>
+                );
+            }
+          })()}
+        </Table.Body>
+      </Table.Root>
+    </Box>
   );
 }
 

@@ -4,6 +4,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
 
 function ProvidersWrapper({ children }) {
   const queryClient = new QueryClient({
@@ -13,9 +14,11 @@ function ProvidersWrapper({ children }) {
   });
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>{children}</BrowserRouter>
-    </QueryClientProvider>
+    <ChakraProvider value={defaultSystem}>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </QueryClientProvider>
+    </ChakraProvider>
   );
 }
 
