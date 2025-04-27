@@ -54,6 +54,7 @@ describe("successful data fetching", () => {
     renderWithProviders(<Explorer />);
 
     expect(screen.getByRole("navigation")).toBeInTheDocument();
+    expect(screen.getByRole("heading")).toBeInTheDocument();
     expect(screen.getByRole("table")).toBeInTheDocument();
   });
 
@@ -69,7 +70,7 @@ describe("successful data fetching", () => {
     renderWithProviders(<Explorer />);
 
     await waitForElementToBeRemoved(
-      screen.queryByText("Loading...", { selector: "td" }) // spinner
+      screen.queryByText("Loading...", { selector: "span" }) // spinner
     );
     expect(
       screen.queryByRole("row", { name: /index\.html/ })
@@ -80,7 +81,7 @@ describe("successful data fetching", () => {
     renderWithProviders(<Explorer />, { route: "/?prefix=dummy/" });
 
     await waitForElementToBeRemoved(
-      screen.queryByText("Loading...", { selector: "td" }) // spinner
+      screen.queryByText("Loading...", { selector: "span" }) // spinner
     );
     expect(screen.getAllByRole("rowgroup")[1]).toBeEmptyDOMElement();
   });

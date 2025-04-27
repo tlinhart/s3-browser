@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import Explorer from "./components/Explorer";
+import { extendTheme } from '@chakra-ui/react'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -11,9 +11,26 @@ const queryClient = new QueryClient({
   },
 });
 
+const theme = extendTheme({
+  components: {
+      Table: {
+          variants: {
+              simple: {
+                  th: {
+                      borderColor: "gray",
+                  },
+                  td: {
+                      borderColor: "gray",
+                  }
+              }
+          }
+      },
+  }
+});
+
 export default function App() {
   return (
-    <ChakraProvider value={defaultSystem}>
+    <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>
@@ -21,7 +38,6 @@ export default function App() {
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </BrowserRouter>
-        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </ChakraProvider>
   );
