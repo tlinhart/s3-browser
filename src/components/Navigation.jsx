@@ -62,7 +62,13 @@ export default function Navigation({ prefix }) {
       method: "POST",
       body: formData,
     })
-      .then((resp) => resp.json())
+      .then((resp) => {
+        if (resp.ok) {
+          return resp.json();
+        }
+
+        return resp.json().then(text => { throw new Error(text.detail) })
+      })
       .then(() => {
         setIsProcessing(false)
         toast({
@@ -70,6 +76,17 @@ export default function Navigation({ prefix }) {
           description: "Your file has been uploaded successfully.",
           status: 'info',
           duration: 3000,
+          isClosable: true,
+        })
+        refetch()
+      })
+      .catch((error) => {
+        setIsProcessing(false)
+        toast({
+          title: `Server error.`,
+          description: `could not upload ${fileName}. ${error}`,
+          status: 'error',
+          duration: 5000,
           isClosable: true,
         })
         refetch()
