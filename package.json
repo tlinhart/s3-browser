@@ -65,7 +65,7 @@
     "webpack-merge": "6.0.1"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "3.817.0",
+    "@aws-sdk/client-s3": "3.821.0",
     "@chakra-ui/react": "3.15.1",
     "@emotion/react": "11.13.5",
     "@grafana/faro-web-sdk": "1.12.3",
