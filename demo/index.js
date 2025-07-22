@@ -18,7 +18,7 @@ registerAutoTags({
 });
 
 // Create an S3 bucket.
-const bucket = new aws.s3.BucketV2("s3-browser-demo-bucket", {
+const bucket = new aws.s3.Bucket("s3-browser-demo-bucket", {
   bucket: "s3-browser-demo.linhart.tech",
   forceDestroy: true,
 });
@@ -38,7 +38,7 @@ new aws.s3.BucketPolicy("s3-browser-demo-bucket-policy", {
   }),
 });
 
-new aws.s3.BucketCorsConfigurationV2("s3-browser-demo-bucket-cors", {
+new aws.s3.BucketCorsConfiguration("s3-browser-demo-bucket-cors", {
   bucket: bucket.id,
   corsRules: [
     {
@@ -50,7 +50,7 @@ new aws.s3.BucketCorsConfigurationV2("s3-browser-demo-bucket-cors", {
   ],
 });
 
-const bucketWebsite = new aws.s3.BucketWebsiteConfigurationV2(
+const bucketWebsite = new aws.s3.BucketWebsiteConfiguration(
   "s3-browser-demo-bucket-website",
   {
     bucket: bucket.id,
@@ -118,7 +118,7 @@ const listFiles = (dir) => {
 
 for (const file of listFiles("./contents")) {
   const relPath = path.relative("./contents", file);
-  new aws.s3.BucketObjectv2(`s3-browser-demo-bucket-object-${relPath}`, {
+  new aws.s3.BucketObject(`s3-browser-demo-bucket-object-${relPath}`, {
     key: relPath,
     bucket: bucket.id,
     acl: "private",
@@ -145,7 +145,7 @@ const buildCommand = new command.local.Command(
 );
 
 // Create a bucket object for the index document.
-new aws.s3.BucketObjectv2(
+new aws.s3.BucketObject(
   "s3-browser-demo-bucket-object-index.html",
   {
     key: "index.html",
