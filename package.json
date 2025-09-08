@@ -56,7 +56,7 @@
     "jest-environment-jsdom": "29.7.0",
     "prettier": "3.4.2",
     "react-dev-utils": "12.0.1",
-    "serve": "14.2.4",
+    "serve": "14.2.5",
     "style-loader": "4.0.0",
     "terser-webpack-plugin": "5.3.14",
     "webpack": "5.97.1",
