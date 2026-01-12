@@ -74,6 +74,7 @@ jobs:
       - name: Create or update stack resources
         uses: pulumi/actions@v6
         with:
+          pulumi-version: "latest"
           command: up
           diff: true
           suppress-progress: true
