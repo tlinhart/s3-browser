@@ -1,13 +1,39 @@
 import { useQuery } from "@tanstack/react-query";
 import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
 
+const SCHEME = process.env.AWS_REQUEST_SCHEME || "http";
+
+const getEndpoint = () => {
+  return `s3.${process.env.AWS_REGION}.${process.env.AWS_ENDPOINT_OVERRIDE}`;
+};
+
 const s3Client = new S3Client({
   region: process.env.AWS_REGION,
   credentials: {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
+  endpoint:
+    process.env.AWS_ENDPOINT_OVERRIDE != null
+      ? `${SCHEME}://${getEndpoint()}`
+      : undefined,
+  forcePathStyle: process.env.FORCE_PATH_STYLE === "true" || undefined,
 });
+
+const getBucketBaseUrl = () => {
+  if (!process.env.AWS_ENDPOINT_OVERRIDE) {
+    return `${SCHEME}://${process.env.BUCKET_NAME}`;
+  }
+
+  const endpoint = getEndpoint();
+
+  // based on doc at https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html
+  return process.env.FORCE_PATH_STYLE === "true"
+    ? `${SCHEME}://${endpoint}/${process.env.BUCKET_NAME}`
+    : `${SCHEME}://${process.env.BUCKET_NAME}.${endpoint}`;
+};
+
+const BUCKET_URL = getBucketBaseUrl();
 
 const excludeRegex = new RegExp(process.env.EXCLUDE_PATTERN || /(?!)/);
 
@@ -37,7 +63,7 @@ const listContents = async (prefix) => {
           lastModified: LastModified,
           size: Size,
           path: Key,
-          url: `http://${process.env.BUCKET_NAME}/${Key}`,
+          url: `${BUCKET_URL}/${Key}`,
         })
       ) || [],
   };
